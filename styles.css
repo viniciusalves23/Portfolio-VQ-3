@@ -499,6 +499,73 @@ h1 {
   font-size: 0.9rem;
 }
 
+/* Experience Section */
+.about-experience {
+  margin-bottom: 40px;
+}
+
+.experience-grid {
+  display: grid;
+  gap: 25px;
+}
+
+.experience-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 25px;
+  display: flex;
+  gap: 20px;
+  transition: var(--transition);
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.experience-image {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--primary-light);
+}
+
+.experience-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.experience-content {
+  flex: 1;
+}
+
+.experience-content h3 {
+  color: var(--primary-dark);
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+.experience-company {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.experience-date {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.experience-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
 /* Contact Section */
 .contact-content {
   display: grid;
@@ -608,16 +675,16 @@ textarea:focus {
 
 /* Responsive Design */
 @media (max-width: 992px) {
+  .subtitle{
+    display: none;
+  }
+  
   .contact-content {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  .subtitle{
-    display: none;
-  }
-
   .container {
     flex-direction: column;
   }
@@ -799,7 +866,7 @@ textarea:focus {
 }
 
 .modal-tags span {
-  background-color: var(--primary-light);
+  background-color: #2b7f31;
   color: var(--text-light);
   padding: 5px 12px;
   border-radius: 30px;
@@ -818,3 +885,15 @@ textarea:focus {
   }
 }
 
+/* Responsive adjustments for experience section */
+@media (max-width: 768px) {
+  .experience-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .experience-image {
+    margin-bottom: 15px;
+  }
+}
