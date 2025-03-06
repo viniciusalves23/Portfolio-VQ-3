@@ -310,7 +310,7 @@ h1 {
 }
 
 .card-tags span {
-  background-color: var(--primary-light);
+  background-color: #2b7f31;
   color: var(--text-light);
   padding: 4px 10px;
   border-radius: 30px;
@@ -614,6 +614,10 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
+  .subtitle{
+    display: none;
+  }
+
   .container {
     flex-direction: column;
   }
