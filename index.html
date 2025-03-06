@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victoria - Portfolio 3</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="profile-img">
+          <img src="/img/logo_vq.jpg" alt="Profile Photo">
+        </div>
+        <h2 class="name">Victoria Caroline</h2>
+        <p class="title">Gestora Ambiental</p>
+        <div class="social-icons">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <nav class="menu">
+        <ul>
+          <li class="active" data-target="dashboard"><i class="fas fa-chart-line"></i> Dashboard</li>
+          <li data-target="projects"><i class="fas fa-leaf"></i> Projetos</li>
+          <li data-target="accomplishments"><i class="fas fa-award"></i> Conquistas</li>
+          <li data-target="about"><i class="fas fa-user"></i> Sobre</li>
+          <li data-target="contact"><i class="fas fa-envelope"></i> Contato</li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <p>© 2025 | Todos os direitos reservados</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard -->
+      <section id="dashboard" class="content-section active">
+        <div class="section-header">
+          <h1>Dashboard</h1>
+          <p class="subtitle">Visão geral de projetos e impactos ambientais</p>
+        </div>
+
+        <div class="stats-container">
+          <div class="stat-card">
+            <i class="fas fa-tree"></i>
+            <h3>15+</h3>
+            <p>Projetos Ambientais</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-seedling"></i>
+            <h3>5.000+</h3>
+            <p>Árvores Plantadas</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-tint"></i>
+            <h3>3</h3>
+            <p>Projetos de Recuperação Hídrica</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-recycle"></i>
+            <h3>8</h3>
+            <p>Programas de Reciclagem</p>
+          </div>
+        </div>
+
+        <div class="recent-projects">
+          <div class="section-header">
+            <h2>Projetos Recentes</h2>
+            <button class="view-all" data-target="projects">Ver Todos</button>
+          </div>
+          <div class="project-grid">
+            <div class="project-card">
+              <div class="card-image">
+                <img src="/img/banner.jpg" alt="Reflorestamento Urbano">
+              </div>
+              <div class="card-content">
+                <h3>Reflorestamento Urbano</h3>
+                <p>Projeto de revitalização de áreas urbanas com plantio de espécies nativas.</p>
+                <div class="card-tags">
+                  <span>Reflorestamento</span>
+                  <span>Urbano</span>
+                </div>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="card-image">
+                <img src="/img/banner.jpg" alt="Recuperação de Nascentes">
+              </div>
+              <div class="card-content">
+                <h3>Recuperação de Nascentes</h3>
+                <p>Preservação e recuperação de nascentes em áreas rurais da região.</p>
+                <div class="card-tags">
+                  <span>Recursos Hídricos</span>
+                  <span>Conservação</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="key-accomplishments">
+          <div class="section-header">
+            <h2>Conquistas Principais</h2>
+            <button class="view-all" data-target="accomplishments">Ver Todas</button>
+          </div>
+          <div class="accomplishment-timeline">
+            <div class="timeline-item">
+              <div class="timeline-icon"><i class="fas fa-certificate"></i></div>
+              <div class="timeline-content">
+                <h3>Certificação em Gestão de Resíduos Industriais</h3>
+                <p class="timeline-date">2023</p>
+                <p>Implementação de sistema que reduziu em 30% o descarte inadequado.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-icon"><i class="fas fa-award"></i></div>
+              <div class="timeline-content">
+                <h3>Prêmio Sustentabilidade Empresarial</h3>
+                <p class="timeline-date">2022</p>
+                <p>Reconhecimento por projeto de economia circular implementado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="content-section">
+        <div class="section-header">
+          <h1>Projetos</h1>
+          <p class="subtitle">Portfólio completo de iniciativas ambientais</p>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="reflorestamento">Reflorestamento</button>
+            <button class="filter-btn" data-filter="hidrico">Recursos Hídricos</button>
+            <button class="filter-btn" data-filter="residuos">Gestão de Resíduos</button>
+            <button class="filter-btn" data-filter="educacao">Educação Ambiental</button>
+          </div>
+        </div>
+
+        <div class="project-grid full-grid">
+          <div class="project-card" data-category="reflorestamento">
+            <div class="card-image">
+              <img src="/img/banner.jpg" alt="Reflorestamento Urbano">
+            </div>
+            <div class="card-content">
+              <h3>Reflorestamento Urbano</h3>
+              <p>Projeto de revitalização de áreas urbanas com plantio de espécies nativas para aumentar a cobertura vegetal e melhorar a qualidade do ar.</p>
+              <div class="card-tags">
+                <span>Reflorestamento</span>
+                <span>Urbano</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card" data-category="hidrico">
+            <div class="card-image">
+              <img src="/img/banner.jpg" alt="Recuperação de Nascentes">
+            </div>
+            <div class="card-content">
+              <h3>Recuperação de Nascentes</h3>
+              <p>Preservação e recuperação de nascentes em áreas rurais da região, garantindo água limpa e sustentável para comunidades locais.</p>
+              <div class="card-tags">
+                <span>Recursos Hídricos</span>
+                <span>Conservação</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card" data-category="residuos">
+            <div class="card-image">
+              <img src="/img/banner.jpg" alt="Reciclagem Comunitária">
+            </div>
+            <div class="card-content">
+              <h3>Reciclagem Comunitária</h3>
+              <p>Implementação de sistema de coleta seletiva e reciclagem em comunidades carentes, gerando renda e reduzindo impacto ambiental.</p>
+              <div class="card-tags">
+                <span>Resíduos</span>
+                <span>Comunidade</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card" data-category="educacao">
+            <div class="card-image">
+              <img src="/img/banner.jpg" alt="Educação Ambiental nas Escolas">
+            </div>
+            <div class="card-content">
+              <h3>Educação Ambiental nas Escolas</h3>
+              <p>Programa educativo para sensibilização ambiental em escolas públicas, alcançando mais de 2.000 estudantes anualmente.</p>
+              <div class="card-tags">
+                <span>Educação</span>
+                <span>Conscientização</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card" data-category="hidrico">
+            <div class="card-image">
+              <img src="/img/banner.jpg" alt="Monitoramento de Qualidade da Água">
+            </div>
+            <div class="card-content">
+              <h3>Monitoramento de Qualidade da Água</h3>
+              <p>Sistema de monitoramento contínuo da qualidade da água em rios e córregos urbanos, com publicação de dados para a comunidade.</p>
+              <div class="card-tags">
+                <span>Recursos Hídricos</span>
+                <span>Monitoramento</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card" data-category="reflorestamento">
+            <div class="card-image">
+              <img src="/img/banner.jpg" alt="Corredores Ecológicos">
+            </div>
+            <div class="card-content">
+              <h3>Corredores Ecológicos</h3>
+              <p>Criação de corredores de biodiversidade conectando fragmentos florestais, permitindo o trânsito de fauna e ampliando conservação.</p>
+              <div class="card-tags">
+                <span>Biodiversidade</span>
+                <span>Conservação</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Accomplishments -->
+      <section id="accomplishments" class="content-section">
+        <div class="section-header">
+          <h1>Conquistas</h1>
+          <p class="subtitle">Resultados e reconhecimentos obtidos</p>
+        </div>
+
+        <div class="accomplishment-timeline full-timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-certificate"></i></div>
+            <div class="timeline-content">
+              <h3>Certificação em Gestão de Resíduos Industriais</h3>
+              <p class="timeline-date">2023</p>
+              <p>Implementação de sistema que reduziu em 30% o descarte inadequado de resíduos industriais em empresa do setor químico.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-award"></i></div>
+            <div class="timeline-content">
+              <h3>Prêmio Sustentabilidade Empresarial</h3>
+              <p class="timeline-date">2022</p>
+              <p>Reconhecimento por projeto de economia circular implementado em parceria com cooperativas de reciclagem.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-users"></i></div>
+            <div class="timeline-content">
+              <h3>Capacitação de 500+ Produtores Rurais</h3>
+              <p class="timeline-date">2021</p>
+              <p>Programa de treinamento em práticas sustentáveis para pequenos produtores rurais, resultando em certificação de produtos orgânicos.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-book"></i></div>
+            <div class="timeline-content">
+              <h3>Publicação de Manual de Boas Práticas Ambientais</h3>
+              <p class="timeline-date">2020</p>
+              <p>Elaboração e publicação de guia prático adotado por 12 prefeituras da região para implementação de políticas ambientais.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-city"></i></div>
+            <div class="timeline-content">
+              <h3>Consultoria para Certificação Município Verde</h3>
+              <p class="timeline-date">2019</p>
+              <p>Orientação técnica que permitiu a certificação ambiental de município com 80 mil habitantes, melhorando a captação de recursos.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="content-section">
+        <div class="section-header">
+          <h1>Sobre</h1>
+          <p class="subtitle">Trajetória profissional e formação</p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-bio">
+            <h2>Quem Sou</h2>
+            <p>Gestora Ambiental com mais de 8 anos de experiência em projetos de sustentabilidade, conservação e educação ambiental. Especialista em implementação de sistemas de gestão ambiental e desenvolvimento de soluções sustentáveis para empresas e comunidades.</p>
+            <p>Minha missão é conciliar desenvolvimento econômico com preservação ambiental, criando projetos que geram impacto positivo real para o meio ambiente e para a sociedade.</p>
+          </div>
+
+          <div class="about-expertise">
+            <h2>Áreas de Atuação</h2>
+            <div class="expertise-grid">
+              <div class="expertise-item">
+                <i class="fas fa-tree"></i>
+                <h3>Reflorestamento</h3>
+                <p>Projetos de recuperação de áreas degradadas e aumento de cobertura vegetal.</p>
+              </div>
+              <div class="expertise-item">
+                <i class="fas fa-tint"></i>
+                <h3>Recursos Hídricos</h3>
+                <p>Preservação de nascentes e gestão sustentável da água.</p>
+              </div>
+              <div class="expertise-item">
+                <i class="fas fa-recycle"></i>
+                <h3>Resíduos Sólidos</h3>
+                <p>Implementação de sistemas de coleta seletiva e economia circular.</p>
+              </div>
+              <div class="expertise-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Educação Ambiental</h3>
+                <p>Programas educativos para escolas e comunidades.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-education">
+            <h2>Formação</h2>
+            <div class="education-item">
+              <h3>Mestrado em Gestão Ambiental</h3>
+              <p class="institution">Universidade Federal de São Paulo</p>
+              <p class="year">2019</p>
+            </div>
+            <div class="education-item">
+              <h3>Especialização em Recuperação de Áreas Degradadas</h3>
+              <p class="institution">Instituto de Pesquisas Ambientais</p>
+              <p class="year">2017</p>
+            </div>
+            <div class="education-item">
+              <h3>Bacharelado em Gestão Ambiental</h3>
+              <p class="institution">Universidade de São Paulo</p>
+              <p class="year">2015</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="content-section">
+        <div class="section-header">
+          <h1>Contato</h1>
+          <p class="subtitle">Entre em contato para parcerias e projetos</p>
+        </div>
+
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <p>contato@anasilva.com.br</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h3>Telefone</h3>
+                <p>(11) 98765-4321</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h3>Localização</h3>
+                <p>São Paulo, SP - Brasil</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h2>Envie uma mensagem</h2>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Assunto</label>
+                <input type="text" id="subject" name="subject" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Mensagem</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">Enviar Mensagem</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
