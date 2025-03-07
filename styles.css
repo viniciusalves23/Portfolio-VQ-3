@@ -902,19 +902,13 @@ textarea:focus {
   margin-bottom: 40px;
 }
 
-.stories-title {
-  color: var(--primary-dark);
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
 .stories-wrapper {
   display: flex;
   gap: 20px;
   overflow-x: auto;
   padding: 10px 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--primary-light) transparent;
+  scrollbar-color: #2b7f31 transparent;
 }
 
 .stories-wrapper::-webkit-scrollbar {
