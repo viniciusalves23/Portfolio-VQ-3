@@ -51,13 +51,59 @@ document.addEventListener("DOMContentLoaded", () => {
   // Project filters
   const filterButtons = document.querySelectorAll(".filter-btn")
   const projectCards = document.querySelectorAll(".project-grid .project-card")
+  const filterContainer = document.querySelector(".filter-container")
+  
+  // Handle filter container scroll indicators
+  function updateFilterScrollState() {
+    if (!filterContainer) return
 
+    const filterButtonsContainer = filterContainer.querySelector(".filter-buttons")
+    if (!filterButtonsContainer) return
+
+    // Check if there's horizontal scroll
+    const hasScroll = filterButtonsContainer.scrollWidth > filterButtonsContainer.clientWidth
+
+    if (!hasScroll) {
+      filterContainer.classList.add("scroll-start", "scroll-end")
+      return
+    }
+
+    // Check if scrolled to the left edge
+    if (filterButtonsContainer.scrollLeft <= 10) {
+      filterContainer.classList.add("scroll-start")
+    } else {
+      filterContainer.classList.remove("scroll-start")
+    }
+
+    // Check if scrolled to the right edge
+    if (
+      filterButtonsContainer.scrollLeft + filterButtonsContainer.clientWidth >=
+      filterButtonsContainer.scrollWidth - 10
+    ) {
+      filterContainer.classList.add("scroll-end")
+    } else {
+      filterContainer.classList.remove("scroll-end")
+    }
+  }
+
+  // Initialize filter scroll state
+  updateFilterScrollState()
+
+  // Update scroll indicators when scrolling
+  if (filterContainer) {
+    const filterButtonsContainer = filterContainer.querySelector(".filter-buttons")
+    if (filterButtonsContainer) {
+      filterButtonsContainer.addEventListener("scroll", updateFilterScrollState)
+
+      // Also update on resize
+      window.addEventListener("resize", updateFilterScrollState)
+    }
+  }
+  
   filterButtons.forEach((button) => {
     button.addEventListener("click", function () {
       // Remove active class from all filter buttons
-      filterButtons.forEach((btn) => {
-        btn.classList.remove("active")
-      })
+      filterButtons.forEach((btn) => btn.classList.remove("active"))
 
       // Add active class to clicked button
       this.classList.add("active")
@@ -66,14 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Show/hide projects based on filter
       projectCards.forEach((card) => {
-        if (filter === "all") {
+        const categories = card.getAttribute("data-category").split(" ") // Transforma em array
+        
+        if (filter === "all" || categories.includes(filter)) {
           card.style.display = "block"
         } else {
-          if (card.getAttribute("data-category") === filter) {
-            card.style.display = "block"
-          } else {
-            card.style.display = "none"
-          }
+          card.style.display = "none"
         }
       })
     })
@@ -267,60 +311,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ]
 
-  // Add click event to all project cards
-  document.querySelectorAll(".project-card").forEach((card) => {
-    card.addEventListener("click", function () {
-      // Get the category of the clicked project
-      const category = this.getAttribute("data-category")
+// Add click event to all project cards
+document.querySelectorAll(".project-card").forEach((card) => {
+  card.addEventListener("click", function () {
+    // Get the categories of the clicked project (array)
+    const categories = this.getAttribute("data-category").split(" ")
 
-      // Find the matching project data
-      let projectData
+    // Find the first matching project data
+    let projectData = projectsData.find((p) => categories.includes(p.id))
 
-      // Special handling for specific projects
-      if (category === "hidrico" && this.querySelector("h3").textContent.includes("Monitoramento")) {
-        projectData = projectsData.find((p) => p.id === "monitoramento")
-      } else if (category === "reflorestamento" && this.querySelector("h3").textContent.includes("Corredores")) {
-        projectData = projectsData.find((p) => p.id === "corredores")
-      } else {
-        projectData = projectsData.find((p) => p.id === category)
-      }
+    if (projectData) {
+      // Populate modal with project data
+      document.getElementById("modalTitle").textContent = projectData.title
+      document.getElementById("modalImage").src = projectData.image
+      document.getElementById("modalImage").alt = projectData.title
+      document.getElementById("modalDescription").textContent = projectData.description
 
-      if (projectData) {
-        // Populate modal with project data
-        document.getElementById("modalTitle").textContent = projectData.title
-        document.getElementById("modalImage").src = projectData.image
-        document.getElementById("modalImage").alt = projectData.title
-        document.getElementById("modalDescription").textContent = projectData.description
+      // Clear and populate objectives
+      const objectivesList = document.getElementById("modalObjectives")
+      objectivesList.innerHTML = ""
+      projectData.objectives.forEach((objective) => {
+        const li = document.createElement("li")
+        li.textContent = objective
+        objectivesList.appendChild(li)
+      })
 
-        // Clear and populate objectives
-        const objectivesList = document.getElementById("modalObjectives")
-        objectivesList.innerHTML = ""
-        projectData.objectives.forEach((objective) => {
-          const li = document.createElement("li")
-          li.textContent = objective
-          objectivesList.appendChild(li)
-        })
+      document.getElementById("modalResults").textContent = projectData.results
 
-        document.getElementById("modalResults").textContent = projectData.results
+      // Clear and populate tags
+      const tagsContainer = document.getElementById("modalTags")
+      tagsContainer.innerHTML = ""
+      projectData.tags.forEach((tag) => {
+        const span = document.createElement("span")
+        span.textContent = tag
+        tagsContainer.appendChild(span)
+      })
 
-        // Clear and populate tags
-        const tagsContainer = document.getElementById("modalTags")
-        tagsContainer.innerHTML = ""
-        projectData.tags.forEach((tag) => {
-          const span = document.createElement("span")
-          span.textContent = tag
-          tagsContainer.appendChild(span)
-        })
-
-        // Show modal
-        modal.style.display = "block"
-        setTimeout(() => {
-          modal.classList.add("show")
-        }, 10)
-        document.body.style.overflow = "hidden" // Prevent scrolling when modal is open
-      }
-    })
+      // Show modal
+      const modal = document.getElementById("projectModal")
+      modal.style.display = "block"
+      setTimeout(() => {
+        modal.classList.add("show")
+      }, 10)
+      document.body.style.overflow = "hidden" // Prevent scrolling when modal is open
+    }
   })
+})
+
 
   // Close modal when close button is clicked
   closeModalBtn.addEventListener("click", () => {
@@ -467,13 +504,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "/img/stories/5/1.jpg",
         "/img/stories/5/2.jpg",
        ],
-      text: "2024 foi um ano cheio..." +
-      "<br></br>" +
-      "De cursos, formações, atividades, avaliações, desafios, estudos e muito mais. Eu aprendi muito com cada passo dado e amadureci muitos aspectos profissionais e pessoais. Encerro o ano realizada e com a certeza e alegria de saber que em 2025 novos aprendizados me aguardam. Fiz um resumo com os momentos profissionais mais marcantes para mim desse ano. " +
-      "<br></br>" +
-      "🌻 Para as realizações coletivas, agradeço a toda a equipe de Educação Ambiental e do grupo Adapta Keraciaba, pois sem muita colaboração, trabalho em equipe, diálogo e paciência, nada disso seria possível. " +
-      "<br></br>" +
-      "Até o ano que vem." ,
+       text: "2024 foi um ano cheio." +
+       "<br><br>" +
+       "De cursos, formações, atividades, avaliações, desafios, estudos e muito mais. Eu aprendi muito com cada passo dado e amadureci muitos aspectos profissionais e pessoais. Encerro o ano realizada e com a certeza e alegria de saber que em 2025 novos aprendizados me aguardam. Fiz um resumo com os momentos profissionais mais marcantes para mim desse ano." +
+      "<br><br>" +
+      "🌻 Para as realizações coletivas, agradeço a toda a equipe de Educação Ambiental e do grupo Adapta Keraciaba, pois sem muita colaboração, trabalho em equipe, diálogo e paciência, nada disso seria possível." +
+      "<br><br>" +
+      "Até o ano que vem."
     },
   ]
 
