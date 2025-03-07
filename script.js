@@ -341,5 +341,637 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "" // Re-enable scrolling
     }
   })
-})
 
+   // Stories Functionality
+  const storiesData = [
+    {
+      id: "story1",
+      title: "Carnaval no Parque da Água Branca",
+      images: [
+        "/img/stories/1/1.jpg",
+        "/img/stories/1/2.jpg",
+        "/img/stories/1/3.jpg",
+        "/img/stories/1/4.jpg",
+        "/img/stories/1/5.jpg",       
+        "/img/stories/1/6.jpg",
+      ],
+      text: "O carnaval foi muito bem celebrado pela equipe educativa do Parque da Água Branca!\n\n" +
+            "<br></br>" +
+            "Na semana do carnaval, o público teve a oportunidade de vivenciar e ter contato com diversos elementos culturais que estão inseridos nessa festa popular. Algumas das atividades foram:\n" +
+            "<br></br>" +
+            "🌿 Confecção de máscaras utilizando elementos naturais\n" +
+            "<br></br>" +
+            "🌿 Confecção de instrumentos com fitas e materiais recicláveis\n" +
+            "<br></br>" +
+            "🌿 Confecção de coroas com elementos naturais\n" +
+            "<br></br>" +
+            "🌿 Confecção de mini estandarte\n\n" +
+            "<br></br>" +
+            "Além dessas atividades, no dia 02/03 também ocorreu o 2º Cortejo “Festejos no parque”. Nesta edição, realizamos uma parceria com o Baile da Melhor Idade que ocorre no parque semanalmente. Resultado: tivemos um cortejo com pessoas de todas as idades e que foi super animado, colorido e cheio de sorrisos!\n" +
+            "<br></br>" +
+            "A realização de articulações e parcerias com grupos que utilizam o parque e organizações locais são fundamentais para ampliar o diálogo e potencializar a conexão e a relação de pertencimento do público com o patrimônio ambiental, cultural e histórico do parque.\n" +
+            "<br></br>" +
+            "Agradeço às equipes de Educação Ambiental e Cultural do parque pelo apoio e co-construção dessa programação tão divertida e conectada à natureza!",
+    },
+    {
+      id: "story2",
+      title: "Cores da Natureza: Workshop Ensina Pintura com Tintas Naturais no Parque da Água Branca",
+      images: [
+       "/img/stories/2/1.jpg",
+        "/img/stories/2/2.jpg",
+        "/img/stories/2/3.jpg",
+        "/img/stories/2/4.jpg",
+        "/img/stories/2/5.jpg",
+        "/img/stories/2/6.jpg",
+        "/img/stories/2/7.jpg",
+        "/img/stories/2/8.jpg",
+      ],
+      text: "O que a beterraba, couve-manteiga, hibisco, açafrão, terra, urucum e espinafre têm em comum?" +
+      "<br></br>" +
+      "Podem ser usadas para fazer tintas da natureza!" +
+      "<br></br>" +
+      "E, no último domingo (16/02), o público do Parque da Água Branca teve a oportunidade de criar pinturas com tintas naturais em um workshop oferecido pela equipe de Educação Ambiental. " +
+      "<br></br>" +
+      "Na primeira parte, os(as) participantes puderam experimentar a criação de diversas cores, a partir da mistura desses elementos da natureza! Depois, o público foi incentivado a desenvolver pinturas tendo o parque como inspiração. " +
+      "<br></br>" +
+      "Já realizamos essa oficina algumas vezes e a cada edição nós incluímos mais elementos naturais e mais cores! É um verdadeiro experimento. " +
+      "<br></br>" +
+      "Agradeço a toda a equipe que apoiou o planejamento e execução da oficina: Larissa Yukie Biajoli Kuchiama, Agnes Roberta Costa, Vanessa França e Julia Alcantara.",
+    },
+    {
+      id: "story3",
+      title: "Dia Mundial da Educação Ambiental: Reflexões e Propósito na Jornada Profissional",
+      images: [
+        "/img/stories/3/1.jpg",
+       ],
+       text: "Dia de celebrar, refletir e se engajar!" +
+       "<br></br>" +
+       "Quando eu estava no Ensino Fundamental e ainda não tinha definido muito bem a graduação que eu queria fazer, eu só tinha uma certeza: “quero trabalhar com Educação Ambiental”. " +
+       "<br></br>" +
+       "E, felizmente, eu estou realizando essa certeza do passado, hehe!" +
+       "<br></br>" +
+       "Desde 2019 (quando iniciei oficialmente essa jornada), eu tive a oportunidade de desenvolver aspectos teóricos e práticos em diversas abordagens da Educação Ambiental na Universidade, em escolas públicas, em comunidades, em parques urbanos, em Unidades Básicas de Saúde (UBS) e nas redes sociais. " +
+       "<br></br>" +
+       "Me sinto realizada em poder contribuir com esse trabalho e propósito tão importantes para a vida no planeta. " +
+       "<br></br>" +
+       "Ontem foi o Dia Mundial da Educação Ambiental (26/01) e desejo a todos e todas os(as) colegas de profissão muita coragem e brilho nos olhos para enfrentarem os desafios (sim, temos muitos!).",
+    },
+    {
+      id: "story4",
+      title: "Conexão com a Natureza: Educação Ambiental e Aprendizado no Parque da Água Branca",
+      images: [
+        "/img/stories/4/1.jpg",
+        "/img/stories/4/2.jpg",
+        "/img/stories/4/3.jpg",
+        "/img/stories/4/4.jpg",
+        "/img/stories/4/5.jpg",
+        "/img/stories/4/6.jpg",
+        "/img/stories/4/7.jpg",
+        "/img/stories/4/8.jpg",
+        "/img/stories/4/9.jpg",
+        "/img/stories/4/10.jpg",
+        "/img/stories/4/11.jpg",
+        "/img/stories/4/12.jpg",
+        "/img/stories/4/13.jpg",
+        "/img/stories/4/14.jpg",
+        "/img/stories/4/15.jpg",
+       ],
+      text: "2025 já iniciou com muita conexão com o patrimônio ambiental e fortalecimento dos saberes interdisciplinares!" +
+      "<br></br>" +
+      "Em janeiro, a equipe educativa do Parque da Água Branca deu continuidade à programação de férias. Os pontos de destaques desta programação, foram: " +
+      "<br></br>" +
+      "🌿 Conectar os visitantes com o patrimônio histórico, cultural e ambiental do parque" +
+      "<br></br>" +
+      "🍃 Acompanhar e apoiar a protagonização das Auxiliares de Educação na condução das atividades" +
+      "<br></br>" +
+      "🍂 Fortalecer e valorizar os conhecimentos e habilidades interdisciplinares da equipe" +
+      "<br></br>" +
+      "A experiência de estimular, apoiar e dar suporte às Auxiliares na condução de atividades tem contribuído muito para o meu desenvolvimento profissional e pessoal, principalmente, para o aperfeiçoamento de habilidades de escuta, comunicação, liderança e capacidade de tomada de decisão." +
+      "<br></br>" +
+      "Dentre as atividades, destacam-se: " +
+      "<br></br>" +
+      "🟢 \"Caminhada para conhecer as árvores Gigantes do Água Branca\" com a participação das auxiliares Julia Alcantara, Sophia Imene e Daniela Santin Apahaza e da educadora Vanessa França." +
+      "<br></br>" +
+      "🟢 \"Desenho de observação com elementos naturais\" que foi ministrada pela Auxiliar Larissa Yukie Biajoli Kuchiama" +
+      "<br></br>" +
+      "🟢 \"Árvores da Mata Atlântica\" com a participação da Julia Alcantara e Sophia Imene" +
+      "<br></br>" +
+      "🟢 \"Oficina de fotografia: Fotografe com seu celular\" que foi ministrada pela Auxiliar Agnes Roberta Costa." +
+      "<br></br>" +
+      "Deu um quentinho no coração ter participado das atividades, saber que deu tudo certo e que o público se divertiu e se conectou com os elementos do parque. Muito obrigada equipe, aprendo muito com vocês!",
+    },
+    {
+      id: "story5",
+      title: "Reflexões e Conquistas: Um Olhar Sobre 2024 e os Aprendizados para 2025",
+      images: [
+        "/img/stories/5/1.jpg",
+        "/img/stories/5/2.jpg",
+       ],
+      text: "2024 foi um ano cheio..." +
+      "<br></br>" +
+      "De cursos, formações, atividades, avaliações, desafios, estudos e muito mais. Eu aprendi muito com cada passo dado e amadureci muitos aspectos profissionais e pessoais. Encerro o ano realizada e com a certeza e alegria de saber que em 2025 novos aprendizados me aguardam. Fiz um resumo com os momentos profissionais mais marcantes para mim desse ano. " +
+      "<br></br>" +
+      "🌻 Para as realizações coletivas, agradeço a toda a equipe de Educação Ambiental e do grupo Adapta Keraciaba, pois sem muita colaboração, trabalho em equipe, diálogo e paciência, nada disso seria possível. " +
+      "<br></br>" +
+      "Até o ano que vem." ,
+    },
+  ]
+
+  const storiesViewer = document.getElementById("storiesViewer")
+  const storiesContent = document.querySelector(".stories-content")
+  const storyItems = document.querySelectorAll(".story-item")
+  const closeStoriesBtn = document.querySelector(".close-stories")
+  const prevBtn = document.querySelector(".stories-prev")
+  const nextBtn = document.querySelector(".stories-next")
+  const progressFill = document.querySelector(".progress-fill")
+
+  let currentStoryIndex = 0
+  let currentImageIndex = 0
+  const storyDuration = 3000 // 3 seconds per story
+  let storyTimeout
+  let currentStoryId
+  let isPaused = false
+  let startTime
+  let elapsedTime = 0
+  const textCharLimit = 50 // Character limit for truncated text
+
+  // Switch to a specific image within a story
+  function switchImage(storyElement, imageIndex) {
+    // Update current image index
+    currentImageIndex = imageIndex
+
+    // Update active image
+    const images = storyElement.querySelectorAll(".story-image")
+    images.forEach((img) => img.classList.remove("active"))
+    images[imageIndex].classList.add("active")
+
+    // Update active thumbnail
+    const thumbnails = storyElement.querySelectorAll(".thumbnail")
+    thumbnails.forEach((thumb) => thumb.classList.remove("active"))
+    thumbnails[imageIndex].classList.add("active")
+
+    // Center the active thumbnail in the scroll view
+    centerActiveThumbnail(storyElement)
+  }
+
+  // Center the active thumbnail in the scroll view
+  function centerActiveThumbnail(storyElement) {
+    const thumbnailsContainer = storyElement.querySelector(".story-thumbnails")
+    if (!thumbnailsContainer) return
+
+    const activeThumb = thumbnailsContainer.querySelector(".thumbnail.active")
+    if (!activeThumb) return
+
+    // Calculate the center position
+    const containerWidth = thumbnailsContainer.offsetWidth
+    const thumbLeft = activeThumb.offsetLeft
+    const thumbWidth = activeThumb.offsetWidth
+
+    // Calculate the scroll position that centers the thumbnail
+    const scrollLeft = thumbLeft - containerWidth / 2 + thumbWidth / 2
+
+    // Smoothly scroll to the calculated position
+    thumbnailsContainer.scrollTo({
+      left: scrollLeft,
+      behavior: "smooth",
+    })
+  }
+
+  // Create story elements
+  function createStoryElements() {
+    storiesContent.innerHTML = ""
+
+    storiesData.forEach((story, index) => {
+      const storyElement = document.createElement("div")
+      storyElement.className = "story"
+      storyElement.setAttribute("data-story-id", story.id)
+
+      // Check if text needs to be truncated
+      let textHtml
+      if (story.text.length > textCharLimit) {
+        textHtml = `
+          <div class="story-text-container">
+            <div class="story-text-content">
+              <div class="truncated-text">${story.text.substring(0, textCharLimit)}...</div>
+              <div class="full-text">${story.text}</div>
+              <button class="read-more-btn">Ver mais</button>
+              <button class="read-less-btn">Ver menos</button>
+            </div>
+          </div>
+        `
+      } else {
+        textHtml = `
+          <div class="story-text-container">
+            <div class="story-text-content">
+              <div class="full-text">${story.text}</div>
+            </div>
+          </div>
+        `
+      }
+
+      // Create image gallery
+      let imagesHtml = ""
+      story.images.forEach((image, imgIndex) => {
+        imagesHtml += `<img src="${image}" alt="${story.title} - Imagem ${imgIndex + 1}" class="story-image ${imgIndex === 0 ? "active" : ""}" data-image-index="${imgIndex}">`
+      })
+
+      // Create thumbnails if there are multiple images
+      let thumbnailsHtml = ""
+      if (story.images.length > 1) {
+        thumbnailsHtml = `
+          <div class="story-thumbnails">
+            ${story.images
+              .map(
+                (image, imgIndex) => `
+              <div class="thumbnail ${imgIndex === 0 ? "active" : ""}" data-image-index="${imgIndex}">
+                <img src="${image}" alt="Miniatura ${imgIndex + 1}">
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+        `
+      }
+
+      storyElement.innerHTML = `
+        <div class="story-images-container">
+          ${imagesHtml}
+        </div>
+        ${thumbnailsHtml}
+        <div class="story-text">
+          <h3>${story.title}</h3>
+          ${textHtml}
+        </div>
+      `
+
+      storiesContent.appendChild(storyElement)
+    })
+
+    // Add event listeners to "Ver mais" and "Ver menos" buttons
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation() // Prevent triggering other click events
+
+        const textContainer = this.closest(".story-text-content")
+        textContainer.classList.add("expanded")
+
+        // Ensure story is paused when reading more
+        pauseStoryProgress()
+      })
+    })
+
+    document.querySelectorAll(".read-less-btn").forEach((btn) => {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation() // Prevent triggering other click events
+
+        const textContainer = this.closest(".story-text-content")
+        textContainer.classList.remove("expanded")
+
+        // Keep the story paused until user explicitly resumes
+        pauseStoryProgress()
+      })
+    })
+
+    // Add event listeners to thumbnails
+    document.querySelectorAll(".thumbnail").forEach((thumbnail) => {
+      thumbnail.addEventListener("click", function (e) {
+        e.stopPropagation() // Prevent triggering other click events
+
+        const imageIndex = Number.parseInt(this.getAttribute("data-image-index"))
+        const storyElement = this.closest(".story")
+
+        // Switch to the selected image
+        switchImage(storyElement, imageIndex)
+
+        // Ensure story is paused when switching images
+        pauseStoryProgress()
+      })
+    })
+  }
+
+  // Initialize progress bar
+  function initProgressBar() {
+    progressFill.style.width = "0%"
+    elapsedTime = 0
+  }
+
+  // Start story progress
+  function startStoryProgress() {
+    if (isPaused) return
+
+    startTime = Date.now() - elapsedTime
+    const interval = 10 // Update every 10ms for smooth animation
+
+    clearTimeout(storyTimeout)
+
+    function updateProgress() {
+      if (isPaused) return
+
+      elapsedTime = Date.now() - startTime
+      const progress = (elapsedTime / storyDuration) * 100
+
+      if (progress >= 100) {
+        progressFill.style.width = "100%"
+
+        // Check if there are more images in the current story
+        const currentStory = document.querySelector(".story.active")
+        const images = currentStory.querySelectorAll(".story-image")
+
+        if (currentImageIndex < images.length - 1) {
+          // Move to the next image in the same story
+          switchImage(currentStory, currentImageIndex + 1)
+          initProgressBar()
+          startStoryProgress()
+        } else {
+          // Move to the next story
+          goToNextStory()
+        }
+      } else {
+        progressFill.style.width = `${progress}%`
+        storyTimeout = setTimeout(updateProgress, interval)
+      }
+    }
+
+    updateProgress()
+  }
+
+  // Pause story progress
+  function pauseStoryProgress() {
+    isPaused = true
+    clearTimeout(storyTimeout)
+    // Store the current elapsed time when paused
+    elapsedTime = Date.now() - startTime
+
+    // Add visual indicator for paused state
+    const activeStory = document.querySelector(".story.active")
+    if (activeStory) {
+      activeStory.classList.add("paused")
+    }
+  }
+
+  // Resume story progress
+  function resumeStoryProgress() {
+    // Don't resume if a text is expanded
+    const expandedText = document.querySelector(".story-text-content.expanded")
+    if (expandedText) return
+
+    isPaused = false
+
+    // Remove visual indicator for paused state
+    const activeStory = document.querySelector(".story.active")
+    if (activeStory) {
+      activeStory.classList.remove("paused")
+    }
+
+    startStoryProgress()
+  }
+
+  // Show story by index
+  function showStory(index) {
+    // Hide all stories
+    const stories = document.querySelectorAll(".story")
+    stories.forEach((story) => {
+      story.classList.remove("active")
+
+      // Reset any expanded texts
+      const textContent = story.querySelector(".story-text-content")
+      if (textContent) {
+        textContent.classList.remove("expanded")
+      }
+    })
+
+    // Show the current story
+    if (stories[index]) {
+      stories[index].classList.add("active")
+      currentStoryId = stories[index].getAttribute("data-story-id")
+      currentStoryIndex = index
+      currentImageIndex = 0 // Reset image index when changing stories
+
+      // Reset active image and thumbnail
+      const currentStory = stories[index]
+      const images = currentStory.querySelectorAll(".story-image")
+      const thumbnails = currentStory.querySelectorAll(".thumbnail")
+
+      images.forEach((img, i) => {
+        img.classList.toggle("active", i === 0)
+      })
+
+      thumbnails.forEach((thumb, i) => {
+        thumb.classList.toggle("active", i === 0)
+      })
+
+      // Center the active thumbnail
+      centerActiveThumbnail(currentStory)
+
+      initProgressBar()
+      startStoryProgress()
+    }
+  }
+
+  // Go to next story
+  function goToNextStory() {
+    if (currentStoryIndex < storiesData.length - 1) {
+      showStory(currentStoryIndex + 1)
+    } else {
+      closeStories()
+    }
+  }
+
+  // Go to previous story
+  function goToPrevStory() {
+    if (currentStoryIndex > 0) {
+      showStory(currentStoryIndex - 1)
+    }
+  }
+
+  // Open stories viewer
+  function openStories(storyId) {
+    createStoryElements()
+
+    // Find the index of the story to show
+    const storyIndex = storiesData.findIndex((story) => story.id === storyId)
+
+    // Show the stories viewer
+    storiesViewer.style.display = "flex"
+    setTimeout(() => {
+      storiesViewer.classList.add("active")
+    }, 10)
+
+    // Show the selected story
+    showStory(storyIndex !== -1 ? storyIndex : 0)
+
+    // Disable body scroll
+    document.body.style.overflow = "hidden"
+
+    // Add event listeners for pause/resume
+    setupPauseResumeListeners()
+  }
+
+  // Setup pause/resume listeners
+  function setupPauseResumeListeners() {
+    const stories = document.querySelectorAll(".story")
+
+    stories.forEach((story) => {
+      // Pause on mouseenter or touch
+      story.addEventListener("mouseenter", pauseStoryProgress)
+      story.addEventListener("touchstart", pauseStoryProgress)
+
+      // Resume on mouseleave or touch end
+      story.addEventListener("mouseleave", function () {
+        // Only resume if no text is expanded
+        const expandedText = this.querySelector(".story-text-content.expanded")
+        if (!expandedText) {
+          resumeStoryProgress()
+        }
+      })
+
+      story.addEventListener("touchend", (e) => {
+        // Don't resume if touching the expanded text or thumbnails
+        if (!e.target.closest(".story-text-content.expanded") && !e.target.closest(".thumbnail")) {
+          resumeStoryProgress()
+        }
+      })
+    })
+  }
+
+  // Close stories viewer
+  function closeStories() {
+    storiesViewer.classList.remove("active")
+    setTimeout(() => {
+      storiesViewer.style.display = "none"
+    }, 300)
+
+    // Clear timeout
+    clearTimeout(storyTimeout)
+    isPaused = false
+
+    // Enable body scroll
+    document.body.style.overflow = ""
+  }
+
+  // Add click event to story items
+  storyItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const storyId = this.getAttribute("data-story-id")
+      openStories(storyId)
+    })
+  })
+
+  // Add click event to close button
+  closeStoriesBtn.addEventListener("click", closeStories)
+
+  // Add click events to navigation buttons
+  prevBtn.addEventListener("click", (e) => {
+    e.stopPropagation() // Prevent triggering story content click
+    goToPrevStory()
+  })
+
+  nextBtn.addEventListener("click", (e) => {
+    e.stopPropagation() // Prevent triggering story content click
+    goToNextStory()
+  })
+
+  // Add click event to stories content for navigation
+  storiesContent.addEventListener("click", function (e) {
+    // Don't do anything if clicking on read more button, expanded text, or thumbnails
+    if (
+      e.target.closest(".read-more-btn") ||
+      e.target.closest(".read-less-btn") ||
+      e.target.closest(".story-text-content.expanded") ||
+      e.target.closest(".thumbnail")
+    ) {
+      return
+    }
+
+    // Toggle pause/resume on click
+    if (isPaused) {
+      resumeStoryProgress()
+    } else {
+      pauseStoryProgress()
+    }
+
+    // Only navigate if not clicking on the story text or thumbnails
+    if (!e.target.closest(".story-text") && !e.target.closest(".story-thumbnails")) {
+      const rect = this.getBoundingClientRect()
+      const x = e.clientX - rect.left
+
+      if (x < rect.width / 3) {
+        // Check if there are previous images in the current story
+        const currentStory = document.querySelector(".story.active")
+        if (currentImageIndex > 0) {
+          // Move to the previous image in the same story
+          switchImage(currentStory, currentImageIndex - 1)
+          initProgressBar()
+          startStoryProgress()
+        } else {
+          // Move to the previous story
+          goToPrevStory()
+        }
+      } else if (x > (rect.width / 3) * 2) {
+        // Check if there are more images in the current story
+        const currentStory = document.querySelector(".story.active")
+        const images = currentStory.querySelectorAll(".story-image")
+
+        if (currentImageIndex < images.length - 1) {
+          // Move to the next image in the same story
+          switchImage(currentStory, currentImageIndex + 1)
+          initProgressBar()
+          startStoryProgress()
+        } else {
+          // Move to the next story
+          goToNextStory()
+        }
+      }
+    }
+  })
+
+  // Close stories when clicking outside
+  storiesViewer.addEventListener("click", function (e) {
+    if (e.target === this) {
+      closeStories()
+    }
+  })
+
+  // Add keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (!storiesViewer.classList.contains("active")) return
+
+    if (e.key === "ArrowLeft") {
+      // Check if there are previous images in the current story
+      const currentStory = document.querySelector(".story.active")
+      if (currentImageIndex > 0) {
+        // Move to the previous image in the same story
+        switchImage(currentStory, currentImageIndex - 1)
+        initProgressBar()
+        startStoryProgress()
+      } else {
+        // Move to the previous story
+        goToPrevStory()
+      }
+    } else if (e.key === "ArrowRight") {
+      // Check if there are more images in the current story
+      const currentStory = document.querySelector(".story.active")
+      const images = currentStory.querySelectorAll(".story-image")
+
+      if (currentImageIndex < images.length - 1) {
+        // Move to the next image in the same story
+        switchImage(currentStory, currentImageIndex + 1)
+        initProgressBar()
+        startStoryProgress()
+      } else {
+        // Move to the next story
+        goToNextStory()
+      }
+    } else if (e.key === "Escape") {
+      closeStories()
+    } else if (e.key === " ") {
+      // Space bar to toggle pause/resume
+      if (isPaused) {
+        resumeStoryProgress()
+      } else {
+        pauseStoryProgress()
+      }
+      e.preventDefault() // Prevent page scrolling
+    }
+  })
+})

@@ -897,3 +897,494 @@ textarea:focus {
     margin-bottom: 15px;
   }
 }
+/* Stories Section */
+.stories-container {
+  margin-bottom: 40px;
+}
+
+.stories-title {
+  color: var(--primary-dark);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.stories-wrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-light) transparent;
+}
+
+.stories-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.stories-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.stories-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--primary-light);
+  border-radius: 20px;
+}
+
+.story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.story-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  position: relative;
+}
+
+.story-circle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.story-circle img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.story-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Stories Viewer */
+.stories-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stories-viewer.active {
+  display: flex;
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.stories-viewer-content {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  max-height: 700px;
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.stories-header {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.stories-progress {
+  display: flex;
+  gap: 5px;
+}
+
+.progress-bar {
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background-color: white;
+  transition: width 0.1s linear;
+}
+
+.stories-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stories-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stories-user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.stories-user span {
+  color: white;
+  font-weight: 600;
+}
+
+.stories-time {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+}
+
+.close-stories {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 11;
+}
+
+.stories-content {
+  flex: 1;
+  position: relative;
+  background-color: #000;
+}
+
+.story {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.story.active {
+  display: flex;
+  opacity: 1;
+}
+
+.story-images-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.story-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.story-image.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* Thumbnails Gallery */
+.story-thumbnails {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 20px;
+  z-index: 5;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  max-width: 100%;
+  scroll-behavior: smooth;
+}
+
+.story-thumbnails::-webkit-scrollbar {
+  height: 4px;
+}
+
+.story-thumbnails::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.story-thumbnails::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.thumbnail {
+  width: 40px;
+  height: 40px;
+  min-width: 40px; /* Ensure thumbnails don't shrink */
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.thumbnail.active {
+  opacity: 1;
+  border-color: white;
+}
+
+.thumbnail:hover {
+  opacity: 0.9;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-text {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  z-index: 5;
+}
+
+.story-text h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.story-text p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Text truncation and read more styles */
+.story-text-container {
+  position: relative;
+  width: 100%;
+}
+
+.story-text-content {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.story-text-content .truncated-text {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.story-text-content .full-text {
+  display: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.story-text-content.expanded {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  padding: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.story-text-content.expanded .truncated-text {
+  display: none;
+}
+
+.story-text-content.expanded .full-text {
+  display: block;
+}
+
+.story-text-content.expanded .read-more-btn {
+  display: none;
+}
+
+.read-more-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.read-more-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Modificar os estilos para o botão "Ver menos" */
+
+.story-text-content .read-less-btn {
+  display: none;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.story-text-content .read-less-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.story-text-content.expanded .read-less-btn {
+  display: inline-block;
+}
+
+/* Ajustar o estilo do botão "Ver mais" para que não seja exibido quando expandido */
+.story-text-content.expanded .read-more-btn {
+  display: none;
+}
+
+/* Scrollbar for expanded text */
+.story-text-content.expanded::-webkit-scrollbar {
+  width: 6px;
+}
+
+.story-text-content.expanded::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.story-text-content.expanded::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.stories-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.stories-prev {
+  left: 10px;
+}
+
+.stories-next {
+  right: 10px;
+}
+
+/* Add a visual indicator for when stories are paused */
+.stories-viewer.active .story.active::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.stories-viewer.active .story.active.paused::after {
+  opacity: 1;
+}
+
+/* Responsive adjustments for stories */
+@media (max-width: 768px) {
+  .stories-viewer-content {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .story-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .story-text-content.expanded {
+    max-height: 150px;
+  }
+
+  .story-thumbnails {
+    bottom: 100px;
+  }
+
+  .thumbnail {
+    width: 30px;
+    height: 30px;
+  }
+}
+
