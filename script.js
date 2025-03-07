@@ -487,56 +487,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentStoryIndex = 0
   let currentImageIndex = 0
-  const storyDuration = 3000 // 3 seconds per story
+  const storyDuration = 3000
   let storyTimeout
   let currentStoryId
   let isPaused = false
   let startTime
   let elapsedTime = 0
-  const textCharLimit = 50 // Character limit for truncated text
+  const textCharLimit = 30
+  let isMobile = window.innerWidth <= 768
+
+  // Detect if device is mobile
+  function checkMobile() {
+    isMobile = window.innerWidth <= 768
+  }
+  
+  window.addEventListener('resize', checkMobile)
+  checkMobile()
 
   // Switch to a specific image within a story
   function switchImage(storyElement, imageIndex) {
     // Update current image index
     currentImageIndex = imageIndex
-
+    
     // Update active image
-    const images = storyElement.querySelectorAll(".story-image")
-    images.forEach((img) => img.classList.remove("active"))
-    images[imageIndex].classList.add("active")
-
+    const images = storyElement.querySelectorAll('.story-image')
+    images.forEach(img => img.classList.remove('active'))
+    images[imageIndex].classList.add('active')
+    
     // Update active thumbnail
-    const thumbnails = storyElement.querySelectorAll(".thumbnail")
-    thumbnails.forEach((thumb) => thumb.classList.remove("active"))
-    thumbnails[imageIndex].classList.add("active")
-
+    const thumbnails = storyElement.querySelectorAll('.thumbnail')
+    thumbnails.forEach(thumb => thumb.classList.remove('active'))
+    thumbnails[imageIndex].classList.add('active')
+    
     // Center the active thumbnail in the scroll view
     centerActiveThumbnail(storyElement)
+    
+    // Reset progress bar and timer
+    initProgressBar()
+    
+    // For mobile, automatically resume playback after switching images
+    if (isMobile) {
+      resumeStoryProgress()
+    }
   }
-
+  
   // Center the active thumbnail in the scroll view
   function centerActiveThumbnail(storyElement) {
-    const thumbnailsContainer = storyElement.querySelector(".story-thumbnails")
+    const thumbnailsContainer = storyElement.querySelector('.story-thumbnails')
     if (!thumbnailsContainer) return
-
-    const activeThumb = thumbnailsContainer.querySelector(".thumbnail.active")
+    
+    const activeThumb = thumbnailsContainer.querySelector('.thumbnail.active')
     if (!activeThumb) return
-
+    
     // Calculate the center position
     const containerWidth = thumbnailsContainer.offsetWidth
     const thumbLeft = activeThumb.offsetLeft
     const thumbWidth = activeThumb.offsetWidth
-
+    
     // Calculate the scroll position that centers the thumbnail
-    const scrollLeft = thumbLeft - containerWidth / 2 + thumbWidth / 2
-
+    const scrollLeft = thumbLeft - (containerWidth / 2) + (thumbWidth / 2)
+    
     // Smoothly scroll to the calculated position
     thumbnailsContainer.scrollTo({
       left: scrollLeft,
-      behavior: "smooth",
+      behavior: 'smooth'
     })
   }
-
+  
   // Create story elements
   function createStoryElements() {
     storiesContent.innerHTML = ""
@@ -570,25 +587,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Create image gallery
-      let imagesHtml = ""
+      let imagesHtml = ''
       story.images.forEach((image, imgIndex) => {
-        imagesHtml += `<img src="${image}" alt="${story.title} - Imagem ${imgIndex + 1}" class="story-image ${imgIndex === 0 ? "active" : ""}" data-image-index="${imgIndex}">`
+        imagesHtml += `<img src="${image}" alt="${story.title} - Imagem ${imgIndex + 1}" class="story-image ${imgIndex === 0 ? 'active' : ''}" data-image-index="${imgIndex}">`
       })
 
       // Create thumbnails if there are multiple images
-      let thumbnailsHtml = ""
+      let thumbnailsHtml = ''
       if (story.images.length > 1) {
         thumbnailsHtml = `
           <div class="story-thumbnails">
-            ${story.images
-              .map(
-                (image, imgIndex) => `
-              <div class="thumbnail ${imgIndex === 0 ? "active" : ""}" data-image-index="${imgIndex}">
+            ${story.images.map((image, imgIndex) => `
+              <div class="thumbnail ${imgIndex === 0 ? 'active' : ''}" data-image-index="${imgIndex}">
                 <img src="${image}" alt="Miniatura ${imgIndex + 1}">
               </div>
-            `,
-              )
-              .join("")}
+            `).join('')}
           </div>
         `
       }
@@ -608,43 +621,46 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // Add event listeners to "Ver mais" and "Ver menos" buttons
-    document.querySelectorAll(".read-more-btn").forEach((btn) => {
-      btn.addEventListener("click", function (e) {
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
         e.stopPropagation() // Prevent triggering other click events
-
-        const textContainer = this.closest(".story-text-content")
-        textContainer.classList.add("expanded")
-
+        
+        const textContainer = this.closest('.story-text-content')
+        textContainer.classList.add('expanded')
+        
         // Ensure story is paused when reading more
         pauseStoryProgress()
       })
     })
 
-    document.querySelectorAll(".read-less-btn").forEach((btn) => {
-      btn.addEventListener("click", function (e) {
+    document.querySelectorAll('.read-less-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
         e.stopPropagation() // Prevent triggering other click events
-
-        const textContainer = this.closest(".story-text-content")
-        textContainer.classList.remove("expanded")
-
-        // Keep the story paused until user explicitly resumes
-        pauseStoryProgress()
+        
+        const textContainer = this.closest('.story-text-content')
+        textContainer.classList.remove('expanded')
+        
+        // Resume story progress after clicking "Ver menos", especially important for mobile
+        resumeStoryProgress()
       })
     })
 
     // Add event listeners to thumbnails
-    document.querySelectorAll(".thumbnail").forEach((thumbnail) => {
-      thumbnail.addEventListener("click", function (e) {
+    document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+      thumbnail.addEventListener('click', function(e) {
         e.stopPropagation() // Prevent triggering other click events
-
-        const imageIndex = Number.parseInt(this.getAttribute("data-image-index"))
-        const storyElement = this.closest(".story")
-
+        
+        const imageIndex = parseInt(this.getAttribute('data-image-index'))
+        const storyElement = this.closest('.story')
+        
         // Switch to the selected image
         switchImage(storyElement, imageIndex)
-
-        // Ensure story is paused when switching images
-        pauseStoryProgress()
+        
+        // For desktop, pause when clicking thumbnails
+        // For mobile, we'll resume automatically in the switchImage function
+        if (!isMobile) {
+          pauseStoryProgress()
+        }
       })
     })
   }
@@ -700,7 +716,9 @@ document.addEventListener("DOMContentLoaded", () => {
     isPaused = true
     clearTimeout(storyTimeout)
     // Store the current elapsed time when paused
-    elapsedTime = Date.now() - startTime
+    if (startTime) {
+      elapsedTime = Date.now() - startTime
+    }
 
     // Add visual indicator for paused state
     const activeStory = document.querySelector(".story.active")
@@ -746,23 +764,23 @@ document.addEventListener("DOMContentLoaded", () => {
       currentStoryId = stories[index].getAttribute("data-story-id")
       currentStoryIndex = index
       currentImageIndex = 0 // Reset image index when changing stories
-
+      
       // Reset active image and thumbnail
       const currentStory = stories[index]
-      const images = currentStory.querySelectorAll(".story-image")
-      const thumbnails = currentStory.querySelectorAll(".thumbnail")
-
+      const images = currentStory.querySelectorAll('.story-image')
+      const thumbnails = currentStory.querySelectorAll('.thumbnail')
+      
       images.forEach((img, i) => {
-        img.classList.toggle("active", i === 0)
+        img.classList.toggle('active', i === 0)
       })
-
+      
       thumbnails.forEach((thumb, i) => {
-        thumb.classList.toggle("active", i === 0)
+        thumb.classList.toggle('active', i === 0)
       })
-
+      
       // Center the active thumbnail
       centerActiveThumbnail(currentStory)
-
+      
       initProgressBar()
       startStoryProgress()
     }
@@ -825,9 +843,29 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
 
+      // For mobile, we need to handle touch events differently
       story.addEventListener("touchend", (e) => {
-        // Don't resume if touching the expanded text or thumbnails
-        if (!e.target.closest(".story-text-content.expanded") && !e.target.closest(".thumbnail")) {
+        // Don't resume if touching the expanded text
+        if (e.target.closest(".story-text-content.expanded")) {
+          return
+        }
+        
+        // Don't resume if touching thumbnails - we handle this separately
+        if (e.target.closest(".thumbnail")) {
+          return
+        }
+        
+        // For mobile, we want to resume playback after a short delay
+        // This allows users to see what they tapped on before continuing
+        if (isMobile) {
+          setTimeout(() => {
+            // Check again if there's expanded text before resuming
+            const expandedText = story.querySelector(".story-text-content.expanded")
+            if (!expandedText) {
+              resumeStoryProgress()
+            }
+          }, 300)
+        } else {
           resumeStoryProgress()
         }
       })
